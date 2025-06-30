@@ -1,6 +1,6 @@
-# name: Deploy and Test Model
+#name: Deploy and Test Model
 
-# on:
+#on:
 #  workflow_run:
 #    workflows: ["Train Model in Development and Production"]
 #    types:

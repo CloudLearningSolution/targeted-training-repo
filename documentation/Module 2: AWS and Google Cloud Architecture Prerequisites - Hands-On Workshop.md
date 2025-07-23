@@ -223,9 +223,23 @@ Understand GCP global infrastructure and design for high availability.
 #### ✅ Step 1: Access Google Cloud Console
 
 
-1. Navigate to [https://console.cloud.google.com](https://console.cloud.google.com)
-2. Select your project from the project dropdown
-3. Open Cloud Shell by clicking the terminal icon in the top toolbar
+1. Open your web browser
+2. Navigate to the Google Cloud Console and sign in: [Google Cloud Console](https://console.cloud.google.com/)
+
+![Google Cloud Console Welcome Page](documentation/media/images/GCP_Console_Welcome.png)
+
+   **Note:** If Organization is the default displayed project profile, participants need to switch to an available domain name (e.g; cloudlearningsolution.com) by toggling from Organization or from No organization, and afterwards select My Billing Account. This option is available in the top left corner of the console its known as the **Project Picker**.
+
+3. In the Select a resource dialog, select your project by clicking **All** and then selecting your project name.
+    Note: You may need to expand the domain name to see and select your project.
+
+4. Open Cloud Shell by clicking the terminal icon in the top toolbar known as the **Activate Cloud Shell** button.
+
+5. Cloud shell will open in a new pane at the bottom of the console. And Cloud shell will require authentication the first time you use it. Click **Authorize** to allow Cloud Shell to access your Google Cloud resources.
+
+**Note**: IAM controls access to resources in Cloud Shell. Your presenter will need to grant you access and may allow specific actions to be denied as a learning exercise.
+
+
 
 Step 2: Explore Available Regions and Zones via Cloud Shell
 

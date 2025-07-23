@@ -312,9 +312,9 @@ Try filters for:
 ### Step 1.1: Billing Account Setup and Navigation (20 minutes)
 
 1. Open your web browser
-2. Navigate to the Google Cloud Console and sign in
+2. Navigate to the Google Cloud Console and sign in: [Google Cloud Console](https://console.cloud.google.com/)
 
-   **Note:** If Organization is the default elected project profile participants need to switch by toggling from Organization to None, and afterwards select My Billing Account.
+   **Note:** If Organization is the default displayed project profile, participants need to switch to an available domain name (e.g; cloudlearningsolution.com) by toggling from Organization or from No organization, and afterwards select My Billing Account. This option is available in the top left corner of the console its known as the **Project Picker**.
 
 3. In the **GCP Console Search Bar**, type `All Products` and select **All Products** from the drop-down
 4. On the All Products page, under **Management**, click **Billing**

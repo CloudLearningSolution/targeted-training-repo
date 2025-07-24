@@ -316,22 +316,22 @@ Try filters for:
 3. In the top left corner of the console by the Google Cloud logo, Select the **Project Picker**. The project picker may display your organization name or a project name. For example, it may display **cloudlearningsolution** or the project **MFAv2**. It may also display **No organization** if you are not part of an organization.
 3. After selecting the project picker regardless of the default setting, ergo; **cloudlearningsolution**. In the **Select a resource** box, select if not already displayed the organization **cloudlearningsolution**, then select your project by clicking **All** and then selecting your project name. Review the Type column to ensure you are selecting a project and not an organization or folder.
     **Note**: You may need to expand the domain name to see and select your project.
-3. In the **GCP Console Search Bar**, type `All Products` and select **All Products** from the drop-down
-4. On the All Products page, under **Management**, click **Billing**
-5. Select your billing account from the Billing screen
+3. In the **GCP Console Search Bar**, type `All Products` and select **All Products** from the drop-down options.
+4. On the All Products page, under the **Management** section, click **Billing**
+5. Select your billing account from the Billing screen. You may need to select **My projects** to see your billing account.
 
 #### Billing Account Configuration Review
 
 - Click **Account management**
 - Verify permissions:
-  - Click or view **+ Add principal** (Note: You may not have permission)
-  - Confirm your billing role (Billing Account; Administrator, User, or Viewer)
+  - Click or view **+ Add principal** (**Note**: You may not have permission)
+  - Confirm your billing role (Billing Account; Administrator, User, or Viewer) by reviewing the **Role / Principal** column. Click to expand the role names to view the users or services known as principals.
   - Document your access level
-- Review account hierarchy:
+- Review account hierarchy in the **Account management** section:
   - Note linked projects
 - Check payment settings:
   - Click **Payment settings**
-  - Review payment methods and automatic payment alerts
+  - Review but do not edit or request to edit payment methods and automatic payment alerts
 
 #### Initial Billing Dashboard Overview
 

@@ -223,9 +223,25 @@ Understand GCP global infrastructure and design for high availability.
 #### ✅ Step 1: Access Google Cloud Console
 
 
-1. Navigate to [https://console.cloud.google.com](https://console.cloud.google.com)
-2. Select your project from the project dropdown
-3. Open Cloud Shell by clicking the terminal icon in the top toolbar
+1. Open your web browser
+2. Navigate to the Google Cloud Console and sign in: [Google Cloud Console](https://console.cloud.google.com/)
+
+![Google Cloud Console Welcome Page](media/images/GCP_Console_Welcome.png)
+
+3. In the top left corner of the console by the Google Cloud logo, Select the **Project Picker**. The project picker may display your organization name or a project name. For example, it may display **cloudlearningsolution** or the project **MFAv2**. It may also display **No organization** if you are not part of an organization.
+
+![Google Cloud Console Welcome Page](media/images/Project_Picker.png)
+
+3. After selecting the project picker regardless of the default setting, ergo; **cloudlearningsolution**. In the **Select a resource** box, select if not already displayed the organization **cloudlearningsolution**, then select your project by clicking **All** and then selecting your project name. Review the Type column to ensure you are selecting a project and not an organization or folder.
+    **Note**: You may need to expand the domain name to see and select your project.
+
+![Google Cloud Console Welcome Page](media/images/Project_Name_Selected.png)
+
+4. Open Cloud Shell by clicking the terminal icon located by the top right area in the Google Cloud Console, hover over the icons until you find and select the **Activate Cloud Shell** button.
+
+5. Cloud shell will open in a new pane at the bottom of the console. If prompted select **Continue**, and Cloud shell will require authentication. Another prompt will appear, Click **Authorize** to allow Cloud Shell to access your Google Cloud resources. If prompted to sign in again, sign in with your Google account to complete the authentication process.
+
+**Note**: IAM controls access to resources in Cloud Shell. Your presenter will need to grant you access and may allow specific actions to be denied as a learning exercise.
 
 Step 2: Explore Available Regions and Zones via Cloud Shell
 

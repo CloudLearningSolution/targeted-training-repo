@@ -226,7 +226,7 @@ Understand GCP global infrastructure and design for high availability.
 1. Open your web browser
 2. Navigate to the Google Cloud Console and sign in: [Google Cloud Console](https://console.cloud.google.com/)
 
-![Google Cloud Console Welcome Page](documentation/media/images/GCP_Console_Welcome.png)
+![Google Cloud Console Welcome Page](media/images/GCP_Console_Welcome.png)
 
    **Note:** If Organization is the default displayed project profile, participants need to switch to an available domain name (e.g; cloudlearningsolution.com) by toggling from Organization or from No organization, and afterwards select My Billing Account. This option is available in the top left corner of the console its known as the **Project Picker**.
 

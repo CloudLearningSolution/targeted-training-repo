@@ -228,10 +228,14 @@ Understand GCP global infrastructure and design for high availability.
 
 ![Google Cloud Console Welcome Page](media/images/GCP_Console_Welcome.png)
 
-   **Note:** If Organization is the default displayed project profile, participants need to switch to an available domain name (e.g; cloudlearningsolution.com) by toggling from Organization or from No organization, and afterwards select My Billing Account. This option is available in the top left corner of the console its known as the **Project Picker**.
+3. In the top left corner of the console by the Google Cloud logo, Select the **Project Picker**. The project picker may display your organization name or a project name. For example, it may display **cloudlearningsolution** or the project **MFAv2**. It may also display **No organization** if you are not part of an organization.
 
-3. In the Select a resource dialog, select your project by clicking **All** and then selecting your project name.
-    Note: You may need to expand the domain name to see and select your project.
+![Google Cloud Console Welcome Page](media/images/Project_Picker.png)
+
+3. After selecting the project picker regardless of the default setting, ergo; **cloudlearningsolution**. In the **Select a resource** box, select if not already displayed the organization **cloudlearningsolution**, then select your project by clicking **All** and then selecting your project name. Review the Type column to ensure you are selecting a project and not an organization or folder.
+    **Note**: You may need to expand the domain name to see and select your project.
+
+![Google Cloud Console Welcome Page](media/images/Project_Name_Selected.png)
 
 4. Open Cloud Shell by clicking the terminal icon in the top toolbar known as the **Activate Cloud Shell** button.
 

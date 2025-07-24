@@ -237,13 +237,11 @@ Understand GCP global infrastructure and design for high availability.
 
 ![Google Cloud Console Welcome Page](media/images/Project_Name_Selected.png)
 
-4. Open Cloud Shell by clicking the terminal icon in the top toolbar known as the **Activate Cloud Shell** button.
+4. Open Cloud Shell by clicking the terminal icon located by the top right area in the Google Cloud Console, hover over the icons until you find and select the **Activate Cloud Shell** button.
 
-5. Cloud shell will open in a new pane at the bottom of the console. And Cloud shell will require authentication the first time you use it. Click **Authorize** to allow Cloud Shell to access your Google Cloud resources.
+5. Cloud shell will open in a new pane at the bottom of the console. If prompted select **Continue**, and Cloud shell will require authentication. Another prompt will appear, Click **Authorize** to allow Cloud Shell to access your Google Cloud resources. If prompted to sign in again, sign in with your Google account to complete the authentication process.
 
 **Note**: IAM controls access to resources in Cloud Shell. Your presenter will need to grant you access and may allow specific actions to be denied as a learning exercise.
-
-
 
 Step 2: Explore Available Regions and Zones via Cloud Shell
 

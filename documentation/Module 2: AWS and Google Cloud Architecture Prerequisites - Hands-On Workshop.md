@@ -37,47 +37,47 @@ This hands-on workshop builds upon the cost management foundation from Module 1 
 
 ## 1. Prerequisites
 
-1.1 Access to AWS Management Console with EC2 and CloudShell permissions
-1.2 AWS CLI available via CloudShell or local environment
-1.3 Familiarity with basic AWS terminology: Region, Availability Zone, CLI
-1.4 No EC2 instance creation required
+1. Access to AWS Management Console with EC2 and CloudShell permissions
+1. AWS CLI available via CloudShell or local environment
+1. Familiarity with basic AWS terminology: Region, Availability Zone, CLI
+1. No EC2 instance creation required
 
 ---
 
 ## 2. Theory Overview
 
-2.1 AWS infrastructure is organized into regions and availability zones.
-2.2 Each region is a geographically isolated location with multiple AZs.
-2.3 Availability Zones are independent failure domains within a region.
-2.4 Opt-in regions must be manually enabled before use.
-2.5 High availability strategies use multiple AZs to ensure fault tolerance.
+2. AWS infrastructure is organized into regions and availability zones.
+2. Each region is a geographically isolated location with multiple AZs.
+2. Availability Zones are independent failure domains within a region.
+2. Opt-in regions must be manually enabled before use.
+2. High availability strategies use multiple AZs to ensure fault tolerance.
 
 ---
 
 ## 3. Hands-On Exploration Steps (Do Not Finalize Resources)
 
-3.1 Access AWS Console
-  3.1.1 Navigate to [AWS Console](https://console.aws.amazon.com)
-  3.1.2 Launch CloudShell from the top navigation bar
+3. Access AWS Console
+3. Navigate to [AWS Console](https://console.aws.amazon.com)
+3. Launch CloudShell from the top navigation bar
 
-3.2 Explore Available Regions
-  3.2.1 Run: `aws ec2 describe-regions --output table`
-  3.2.2 Run: `aws ec2 describe-regions --query 'Regions[*].[RegionName,OptInStatus]' --output table`
-  3.2.3 Identify which regions require opt-in
+3. Explore Available Regions
+3. Run: `aws ec2 describe-regions --output table`
+3. Run: `aws ec2 describe-regions --query 'Regions[*].[RegionName,OptInStatus]' --output table`
+3. Identify which regions require opt-in
 
-3.3 Explore Availability Zones
-  3.3.1 Run: `aws ec2 describe-availability-zones --output table`
-  3.3.2 Run: `aws ec2 describe-availability-zones --region us-east-1 --output table`
-  3.3.3 Observe zone names and states
+3. Explore Availability Zones
+3. Run: `aws ec2 describe-availability-zones --output table`
+3. Run: `aws ec2 describe-availability-zones --region us-east-1 --output table`
+3. Observe zone names and states
 
-3.4 Inspect Region Selector in EC2 Console
-  3.4.1 Navigate to EC2 > Instances > Launch Instance
-  3.4.2 Use the region dropdown to compare AZ counts
-  3.4.3 Cancel before launching any instance
+3. Inspect Region Selector in EC2 Console
+3. Navigate to EC2 > Instances > Launch Instance
+3. Use the region dropdown to compare AZ counts
+3. Cancel before launching any instance
 
-3.5 Sketch Region-to-Zone Mapping
-  3.5.1 Identify 3 regions and list their AZs
-  3.5.2 Note differences in zone naming and availability
+3. Sketch Region-to-Zone Mapping
+3. Identify 3 regions and list their AZs
+3. Note differences in zone naming and availability
 
 ---
 
@@ -110,98 +110,87 @@ This hands-on workshop builds upon the cost management foundation from Module 1 
 
 ---
 
-# Lab 2.2: AWS Edge Locations and CloudFront Global Network Exploration
+# 🧪 Lab 2.2: AWS Edge Locations and CloudFront Global Network Exploration
+
+**Duration:** 45 minutes
+**Objective:** Explore AWS’s global content delivery infrastructure using CloudFront and edge location metadata—without deploying distributions or modifying resources.
 
 ---
 
-## Duration
-**30 minutes**
+## 1. Prerequisites
 
-## Objective
-Implement global content delivery and edge computing strategies.
-
----
-
-## Prerequisites
-
-- AWS Management Console access with infrastructure permissions
-- AWS CloudShell access enabled
-- Basic understanding of CDN concepts
+1.1 AWS Management Console access with CloudFront and CloudShell permissions
+1.2 AWS CLI available via CloudShell or local environment
+1.3 Basic understanding of CDN concepts (edge location, origin, cache)
+1.4 No CloudFront distribution creation required
 
 ---
 
-## Theory Review
+## 2. Theory Overview
 
-- AWS operates **450+ Points of Presence (PoPs)** and **13 Regional Edge Caches (RECs)** worldwide
-- **Points of Presence (PoPs):** Edge locations for content caching closest to users
-- **Regional Edge Caches (RECs):** Mid-tier caches between PoPs and origin servers
-- **CloudFront** for content delivery network services
-- **AWS Global Accelerator** for application performance optimization
-- **Lambda@Edge** and **CloudFront Functions** for serverless compute at edge locations
-
----
-
-## 🧪 Hands-On Lab
-
-### Part 1: CloudFront Distribution Setup (15 minutes)
-
-#### ✅ Step 1: Create S3 Bucket for Origin
-
-**Navigate to S3 service in AWS Console**
-
-1. Go to **S3 > Buckets**
-2. Click **Create bucket**
-
-**Configure S3 bucket**
-
-- Bucket name: `ml-content-origin-[random-number]`
-- Region: Keep default
-- Block all public access: **Uncheck** (for demo purposes)
-- Click **Create bucket**
-
-**Upload sample content via Console**
-
-1. Click your bucket name
-2. Click **Upload**
-3. Upload a sample image or HTML file
-4. Click **Upload**
+2.1 AWS CloudFront is a content delivery network (CDN) that uses a global network of edge locations.
+2.2 Edge locations cache content closer to users to reduce latency.
+2.3 Regional edge caches act as mid-tier caches between origin and edge locations.
+2.4 CloudFront integrates with other AWS services like S3, EC2, and Lambda@Edge.
+2.5 Edge locations are distributed across major cities and regions worldwide.
 
 ---
 
-#### 🌐 Step 2: Create CloudFront Distribution via Console
+## 3. Hands-On Exploration Steps (Do Not Finalize Resources)
 
-**Navigate to CloudFront service**
+3.1 Access AWS Console
+  3.1.1 Navigate to [AWS Console](https://console.aws.amazon.com)
+  3.1.2 Launch CloudShell from the top navigation bar
 
-1. Go to **CloudFront > Distributions**
-2. Click **Create Distribution**
+3.2 Explore Edge Location Metadata
+  3.2.1 Run: `aws cloudfront list-distributions --output json`
+  3.2.2 If no distributions exist, proceed to inspect global infrastructure
+  3.2.3 Run: `aws cloudfront get-distribution-config --id <distribution-id>` (only if read-only distributions exist)
 
-**Configure Origin settings**
+3.3 Review Global Edge Network
+  3.3.1 Navigate to **CloudFront > Locations** in AWS Console
+  3.3.2 Observe map of edge locations and regional edge caches
+  3.3.3 Note geographic distribution and latency zones
 
-- Origin domain: Select your S3 bucket
-- Name: Keep default
-- Origin access: Origin access control settings (recommended)
-- Create new OAC if prompted
+3.4 Inspect CloudFront Console
+  3.4.1 Navigate to **CloudFront > Distributions**
+  3.4.2 Select any existing distribution (if available)
+  3.4.3 Review origin settings, cache behaviors, and edge associations
+  3.4.4 Do not create or modify any distributions
 
-**Configure Default cache behavior**
-
-- Viewer protocol policy: Redirect HTTP to HTTPS
-- Allowed HTTP methods: GET, HEAD
-- Cache policy: Caching Optimized
-
-**Configure Distribution settings**
-
-- Price class: Use all edge locations
-- Default root object: `index.html` (if uploaded)
-- Click **Create Distribution**
+3.5 Compare Edge Location Coverage
+  3.5.1 Identify 3 cities with edge locations from the AWS map
+  3.5.2 Note proximity to major user populations
+  3.5.3 Record latency benefits and strategic placement rationale
 
 ---
 
-#### 🔍 Step 3: Verify Distribution via CloudShell
+## 4. Deliverables
 
-**List CloudFront distributions**
+4.1 List of global edge locations and regional edge caches
+4.2 Summary of CloudFront distribution architecture (if read-only access available)
+4.3 Notes on geographic distribution and latency optimization strategy
 
+---
 
-aws cloudfront list-distributions --query 'DistributionList.Items[*].[Id,DomainName,Status]' --output table
+## 5. Supplemental Materials
+
+5.1 Runbook: `runbooks/aws-cloudfront-edge-location-inspection.md`
+5.2 Playbook: `playbooks/aws-global-cdn-strategy.md`
+
+---
+
+## 6. Notes and Warnings
+
+6.1 Do not create or modify CloudFront distributions during this lab
+6.2 Edge location availability may vary by region and account
+6.3 CLI output may be empty if no distributions exist—this is expected
+
+---
+
+## 7. Verification Source
+
+7.1 Validated against [AWS CloudFront Documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 
 ---
 
@@ -209,48 +198,39 @@ aws cloudfront list-distributions --query 'DistributionList.Items[*].[Id,DomainN
 
 ---
 
-## Duration
+# 🧪 Lab 2.3: Google Cloud Regions and Zones Architecture Analysis
 
-**45 minutes**
-
-## Objective
-
-Understand GCP global infrastructure and design for high availability.
+**Duration:** 45 minutes
+**Objective:** Explore Google Cloud’s global infrastructure, focusing on regions, zones, and service availability—without deploying any resources.
 
 ---
 
-## Prerequisites
+## 1. Prerequisites
 
-- Google Cloud Console access with project access rights
-- Cloud Shell access enabled
-- Basic understanding of cloud concepts
-
----
-
-## ✅ Theory Review
-
-- Google Cloud has **42+ regions** with **127+ zones** globally
-- Each region is completely independent with multiple isolated zones
-- Zones are connected by Google’s private high-speed network
-- Most regions consist of **3+ zones** housed in **3+ physical data centers**, with exceptions (Stockholm, Mexico, Osaka, Montreal) that are expanding to meet this requirement
+1.1 Google Cloud Console access with project-level permissions
+1.2 Cloud Shell enabled
+1.3 Basic understanding of cloud infrastructure concepts
+1.4 Ensure the Compute Engine API is enabled for your project
+1.5 No VM instance creation required
 
 ---
 
-## 🧪 Hands-On Lab
+## 2. Theory Overview
 
-### Part 1: Infrastructure Discovery (15 minutes)
+2.1 Google Cloud has over 40 regions and 100+ zones globally.
+2.2 Each region is a geographic location containing multiple isolated zones.
+2.3 Zones are independent failure domains connected via Google’s private high-speed network.
+2.4 Most regions contain three or more zones housed in separate physical facilities.
+2.5 Service availability may vary by region and zone.
 
-#### ✅ Step 1: Access Google Cloud Console
+---
 
+## 3. Hands-On Exploration Steps (Do Not Finalize Resources)
 
-1. Open your web browser
-2. Navigate to the Google Cloud Console and sign in: [Google Cloud Console](https://console.cloud.google.com/)
-
-![Google Cloud Console Welcome Page](media/images/GCP_Console_Welcome.png)
-
-3. In the top left corner of the console by the Google Cloud logo, Select the **Project Picker**. The project picker may display your organization name or a project name. For example, it may display **cloudlearningsolution** or the project **MFAv2**. It may also display **No organization** if you are not part of an organization.
-
-![Google Cloud Console Welcome Page](media/images/Project_Picker.png)
+3.1 Access Google Cloud Console
+  3.1.1 Navigate to [Google Cloud Console](https://console.cloud.google.com)
+  3.1.2 Use the Project Picker to select your project
+  3.1.3 ![Google Cloud Console Welcome Page](media/images/Project_Picker.png)
 
 3. After selecting the project picker regardless of the default setting, ergo; **cloudlearningsolution**. In the **Select a resource** box, select if not already displayed the organization **cloudlearningsolution**, then select your project by clicking **All** and then selecting your project name. Review the Type column to ensure you are selecting a project and not an organization or folder.
     **Note**: You may need to expand the domain name to see and select your project.
@@ -263,210 +243,52 @@ Understand GCP global infrastructure and design for high availability.
 
 **Note**: IAM controls access to resources in Cloud Shell. Your presenter will need to grant you access and may allow specific actions to be denied as a learning exercise.
 
-Step 2: Explore Available Regions and Zones via Cloud Shell
+3.2 Activate Cloud Shell
+  3.2.1 Click the terminal icon in the top navigation bar
 
-# List all regions
-gcloud compute regions list --format="table(name,status,zones.len():label=ZONES)"
+3.3 Explore Regions and Zones via CLI
+  3.3.1 Run: `gcloud compute regions list --format="table(name,status,zones.len():label=ZONES)"`
+  3.3.2 Run: `gcloud compute regions describe us-central1`
+  3.3.3 Run: `gcloud compute zones list --format="table(name,region,status)"`
+  3.3.4 Run: `gcloud compute zones list --filter="region:us-central1" --format="table(name,status)"`
 
-# Get detailed region info
-gcloud compute regions describe us-central1
+3.4 Inspect Region-Zone Mapping via Console
+  3.4.1 Navigate to **Compute Engine > VM instances > Create Instance**
+  3.4.2 Use the Region dropdown to view available zones
+  3.4.3 Cancel before deploying any instance
 
-# List all zones
-gcloud compute zones list --format="table(name,region,status)"
+3.5 Check Service Availability
+  3.5.1 Run: `gcloud ai models list --region=us-central1 2>/dev/null || echo "Vertex AI not available in this region"`
+  3.5.2 Run: `gcloud compute machine-types list --zones=us-central1-a --filter="name:n1-standard"`
 
-# Filter zones by region
-gcloud compute zones list --filter="region:us-central1" --format="table(name,status)"
+---
 
+## 4. Deliverables
 
-🔍 Step 3: Analyze Regional Capacity via Console
+4.1 Region and zone availability matrix
+4.2 Notes on service availability for Vertex AI and machine types
+4.3 Observations on zone distribution and naming conventions
 
-1. Navigate to **Compute Engine > VM instances**
-2. Click **Create Instance**
-3. Use the Region dropdown to observe available regions
-4. Select different regions and note the zone availability
-5. Cancel instance creation (do not deploy)
+---
 
-Step 4: Check Service Availability by Region
+## 5. Supplemental Materials
 
-# Check Vertex AI availability
-gcloud ai models list --region=us-central1 2>/dev/null || echo "Vertex AI not available in this region"
+5.1 Runbook: `runbooks/gcp-region-zone-exploration.md`
+5.2 Playbook: `playbooks/gcp-multi-zone-deployment-strategy.md`
 
-# Check available machine types
-gcloud compute machine-types list --zones=us-central1-a --filter="name:n1-standard"
+---
 
-### Part 2: Multi-Zone Deployment (20 minutes)
+## 6. Notes and Warnings
 
-##### ✅ Step 5: Create a Multi-Zone Managed Instance Group
+6.1 Do not finalize VM creation during this lab
+6.2 Zone names (e.g., `us-central1-a`) may vary by region and project
+6.3 Some services are region-specific—verify availability before planning deployments
 
-1. Navigate to **Compute Engine > Instance templates**
-2. Click **Create instance template**
-3. Name: `ml-workload-template`
-4. Machine: e2-medium
-5. Boot disk: Debian GNU/Linux 11
-6. Click **Create**
+---
 
-##### Create managed instance group via Cloud Shell:
+## 7. Verification Source
 
-gcloud compute instance-groups managed create ml-instance-group \
-  --template=ml-workload-template \
-  --zones=us-central1-a,us-central1-b,us-central1-c \
-  --target-distribution-shape=BALANCED \
-  --size=3
-
-##### Configure auto-scaling:
-
-gcloud compute instance-groups managed set-autoscaling ml-instance-group \
-  --region=us-central1 \
-  --max-num-replicas=6 \
-  --min-num-replicas=3 \
-  --target-cpu-utilization=0.6
-
-#### Step 6: Test Zone Distribution via Console
-
-1. Navigate to **Compute Engine > Instance groups**
-2. Click on `ml-instance-group`
-3. Observe instance distribution across zones in the **Details** tab
-
-#### Step 7: Configure Health Checks
-
-gcloud compute health-checks create http ml-health-check \
-  --port=80 \
-  --request-path=/health \
-  --check-interval=30s \
-  --timeout=10s \
-  --healthy-threshold=2 \
-  --unhealthy-threshold=3
-
-gcloud compute instance-groups managed update ml-instance-group \
-  --region=us-central1 \
-  --health-check=ml-health-check
-
-
-### Part 3: Zone Failure Simulation (10 minutes)
-
-#### ⚠️ Step 8: Simulate Zone Outage
-
-##### View current instance distribution:
-
-
-```python
-gcloud compute instances list --filter="name:ml-instance-group*" --format="table(name,zone,status)"
-```
-##### Simulate zone failure via Console:
-
-1. Navigate to **Compute Engine > VM instances**
-2. Select instances in `us-central1-a`
-3. Click **Delete** (simulate outage)
-
-##### Monitor auto-healing:
-
-
-```python
-watch -n 10 'gcloud compute instance-groups managed describe ml-instance-group --region=us-central1 --format="value(status)"'
-```
-
-
-##### ✅ Step 9: Verify High Availability
-
-##### Check instance redistribution:
-
-```python
-gcloud compute instances list --filter="name:ml-instance-group*" --format="table(name,zone,status)"
-```
-
-View instance group events via Console:
-
-
-1. Navigate to **Compute Engine > Instance groups**
-2. Click `ml-instance-group`
-3. Go to the **Monitoring** tab for scaling events
-Regional Resource Strategy Design
-🌐 Step 10: Multi-Region Planning
-Identify optimal ML regions:
-
-
-gcloud compute accelerator-types list --format="table(name,zone)" | grep "nvidia-tesla"
-Analyze regional pricing via Console:
-
-
-1. Navigate to **Billing > Pricing**
-2. Compare **Compute Engine pricing** across regions
-3. Document cost differences
-Plan DR regions with 3+ zones:
-
-
-gcloud compute regions list --format="table(name,zones.len():label=ZONES)" --filter="zones.len()>=3"
-
-📦 Deliverables
-
-1. Zone Availability Matrix
-Region names and zone counts
-
-Service availability by region
-
-Machine type availability
-
-GPU/TPU availability
-
-2. Multi-Zone Deployment Architecture
-Instance group setup
-
-Zone distribution strategy
-
-Auto-scaling configuration
-
-Health check implementation
-
-Failure recovery behavior
-
-3. Regional Deployment Strategy Document
-Primary and secondary region selection
-
-Disaster recovery planning
-
-Cost optimization opportunities
-
-Compliance and data residency considerations
-
-🧹 Cleanup
-Remove created resources via Cloud Shell:
-
-
-# Delete managed instance group
-gcloud compute instance-groups managed delete ml-instance-group --region=us-central1 --quiet
-
-# Delete instance template
-gcloud compute instance-templates delete ml-workload-template --quiet
-
-# Delete health check
-gcloud compute health-checks delete ml-health-check --quiet
-
-
-✅ Accuracy Notes
-
-CLI commands and infrastructure counts reflect GCP state as of 2025
-
-All queries are beginner-friendly and verified for Cloud Shell
-
-Console navigation is simplified and current
-
-GCP has 42+ regions and 127+ zones
-
-Cleanup commands use --quiet to suppress prompts
-
-🧠 Key Learning Points
-
-Regional Independence: Each GCP region has isolated failure domains
-
-Zone Distribution: Spread workloads for availability
-
-Auto-healing: Managed groups replace failed instances
-
-Service Variations: Not all services available in all regions
-
-Cost Considerations: Pricing varies across regions
-
-Infrastructure Standards: Most regions host 3+ zones in 3+ physical data centers
+7.1 Validated against [Google Cloud Regions and Zones Documentation](https://cloud.google.com/compute/docs/regions-zones)
 
 ---
 

@@ -1,4 +1,4 @@
-# MLOPS Model Migration Workshop – Week 2: AWS & Google Cloud Architecture Essentials - Hands-On Workshop
+# Week 2: Core Architecture - Hands-On Workshop
 
 ---
 
@@ -7,15 +7,14 @@
 By the end of this workshop, participants will be able to:
 
 - Compare and contrast AWS and Google Cloud global infrastructure architectures
-- Design topologies across both platforms
+- Explore topologies across both platforms
 - Map AWS services to Google Cloud service equivalents for AI/ML pipeline workloads
-- Implement basic IAM configurations for secure ML environments
 
 ---
 
 ## Prerequisites
 
-- Completion of Module 1: Cost Management Foundation
+- Completion of Module 1: Cost Optimization
 - AWS Management Console access with infrastructure permissions
 - Google Cloud Console access with project access rights
 
@@ -29,64 +28,85 @@ This hands-on workshop builds upon the cost management foundation from Module 1 
 
 ## Module 1: AWS Global Infrastructure and Core Resources
 
-### Lab 2.1: AWS Regions and Availability Zones Architecture Deep Dive
+# 🧪 Lab 2.1: AWS Regions and Availability Zones Architecture Deep Dive
 
-- **Duration:** 45 minutes
-- **Objective:** Understand AWS global infrastructure and design for high availability
-
-### Lab Prerequisites
-
-- AWS Management Console access with infrastructure permissions
-- AWS CloudShell access enabled
-- Basic understanding of cloud concepts
+**Duration:** 45 minutes
+**Objective:** Explore AWS global infrastructure and availability zone design using CLI and console-based inspection—without finalizing resource creation.
 
 ---
 
-## 🧪 Hands-On Lab
+## 1. Prerequisites
+
+1.1 Access to AWS Management Console with EC2 and CloudShell permissions
+1.2 AWS CLI available via CloudShell or local environment
+1.3 Familiarity with basic AWS terminology: Region, Availability Zone, CLI
+1.4 No EC2 instance creation required
 
 ---
 
-### Part 1: Region Explorer (15 minutes)
+## 2. Theory Overview
 
-#### ✅ Step 1: Access AWS Management Console
+2.1 AWS infrastructure is organized into regions and availability zones.
+2.2 Each region is a geographically isolated location with multiple AZs.
+2.3 Availability Zones are independent failure domains within a region.
+2.4 Opt-in regions must be manually enabled before use.
+2.5 High availability strategies use multiple AZs to ensure fault tolerance.
 
+---
 
-1. Open your web browser
-2. Navigate to [https://console.aws.amazon.com](https://console.aws.amazon.com)
-3. Sign in to your AWS account
-4. Open CloudShell by clicking the terminal icon
-5. Use the Search Bar to enter `EC2` and select the EC2 service
+## 3. Hands-On Exploration Steps (Do Not Finalize Resources)
 
-#### ✅ Step 2: List All Regions via CloudShell
+3.1 Access AWS Console
+  3.1.1 Navigate to [AWS Console](https://console.aws.amazon.com)
+  3.1.2 Launch CloudShell from the top navigation bar
 
-aws ec2 describe-regions --output table
+3.2 Explore Available Regions
+  3.2.1 Run: `aws ec2 describe-regions --output table`
+  3.2.2 Run: `aws ec2 describe-regions --query 'Regions[*].[RegionName,OptInStatus]' --output table`
+  3.2.3 Identify which regions require opt-in
 
-aws ec2 describe-regions --query 'Regions[*].[RegionName,OptInStatus]' --output table
+3.3 Explore Availability Zones
+  3.3.1 Run: `aws ec2 describe-availability-zones --output table`
+  3.3.2 Run: `aws ec2 describe-availability-zones --region us-east-1 --output table`
+  3.3.3 Observe zone names and states
 
-aws ec2 describe-regions --query 'length(Regions)' --output text
+3.4 Inspect Region Selector in EC2 Console
+  3.4.1 Navigate to EC2 > Instances > Launch Instance
+  3.4.2 Use the region dropdown to compare AZ counts
+  3.4.3 Cancel before launching any instance
 
-#### Step 3: Explore Region Details via Console
+3.5 Sketch Region-to-Zone Mapping
+  3.5.1 Identify 3 regions and list their AZs
+  3.5.2 Note differences in zone naming and availability
 
-1. Use the AWS Console Search Bar to enter `EC2`
-2. Select the EC2 service
-3. In the top-right corner, click the Region selector
-4. Review available regions and note those labeled “Opt-in required”
+---
 
-#### Step 4: Analyze Availability Zones
+## 4. Deliverables
 
-1. Current region AZs
-aws ec2 describe-availability-zones --output table
+4.1 Table of AWS Regions and Opt-In status
+4.2 List of AZs for `us-east-1` and two other regions
+4.3 Notes on regional design considerations and zone distribution
 
-2. Specific region example
-aws ec2 describe-availability-zones --region us-east-1 --output table
+---
 
-3. Count AZs per region
-aws ec2 describe-regions --query 'Regions[*].RegionName' --output text | \
-while read region; do
-  count=$(aws ec2 describe-availability-zones --region $region \
-  --query 'length(AvailabilityZones)' --output text 2>/dev/null || echo "0")
-  echo "$region: $count AZs"
-done
+## 5. Supplemental Materials
+
+5.1 Runbook: `runbooks/aws-region-az-exploration.md`
+5.2 Playbook: `playbooks/aws-ha-topology-strategy.md`
+
+---
+
+## 6. Notes and Warnings
+
+6.1 Do not launch EC2 instances or other resources during this lab
+6.2 AZ names (e.g., `us-east-1a`) are account-specific and may vary
+6.3 Opt-in regions may require manual activation before use
+
+---
+
+## 7. Verification Source
+
+7.1 Validated against [AWS EC2 Regions and AZs Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
 
 ---
 

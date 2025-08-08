@@ -83,30 +83,30 @@ This hands-on workshop builds upon the cost management foundation from Module 1 
 
 ## 4. Deliverables
 
-4.1 Table of AWS Regions and Opt-In status
-4.2 List of AZs for `us-east-1` and two other regions
-4.3 Notes on regional design considerations and zone distribution
+4. Table of AWS Regions and Opt-In status
+4. List of AZs for `us-east-1` and two other regions
+4. Notes on regional design considerations and zone distribution
 
 ---
 
 ## 5. Supplemental Materials
 
-5.1 Runbook: `runbooks/aws-region-az-exploration.md`
-5.2 Playbook: `playbooks/aws-ha-topology-strategy.md`
+5. Runbook: `runbooks/aws-region-az-exploration.md`
+5. Playbook: `playbooks/aws-ha-topology-strategy.md`
 
 ---
 
 ## 6. Notes and Warnings
 
-6.1 Do not launch EC2 instances or other resources during this lab
-6.2 AZ names (e.g., `us-east-1a`) are account-specific and may vary
-6.3 Opt-in regions may require manual activation before use
+6. Do not launch EC2 instances or other resources during this lab
+6. AZ names (e.g., `us-east-1a`) are account-specific and may vary
+6. Opt-in regions may require manual activation before use
 
 ---
 
 ## 7. Verification Source
 
-7.1 Validated against [AWS EC2 Regions and AZs Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
+7. Validated against [AWS EC2 Regions and AZs Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
 
 ---
 
@@ -119,78 +119,78 @@ This hands-on workshop builds upon the cost management foundation from Module 1 
 
 ## 1. Prerequisites
 
-1.1 AWS Management Console access with CloudFront and CloudShell permissions
-1.2 AWS CLI available via CloudShell or local environment
-1.3 Basic understanding of CDN concepts (edge location, origin, cache)
-1.4 No CloudFront distribution creation required
+1. AWS Management Console access with CloudFront and CloudShell permissions
+1. AWS CLI available via CloudShell or local environment
+1. Basic understanding of CDN concepts (edge location, origin, cache)
+1. No CloudFront distribution creation required
 
 ---
 
 ## 2. Theory Overview
 
-2.1 AWS CloudFront is a content delivery network (CDN) that uses a global network of edge locations.
-2.2 Edge locations cache content closer to users to reduce latency.
-2.3 Regional edge caches act as mid-tier caches between origin and edge locations.
-2.4 CloudFront integrates with other AWS services like S3, EC2, and Lambda@Edge.
-2.5 Edge locations are distributed across major cities and regions worldwide.
+2. AWS CloudFront is a content delivery network (CDN) that uses a global network of edge locations.
+2. Edge locations cache content closer to users to reduce latency.
+2. Regional edge caches act as mid-tier caches between origin and edge locations.
+2. CloudFront integrates with other AWS services like S3, EC2, and Lambda@Edge.
+2. Edge locations are distributed across major cities and regions worldwide.
 
 ---
 
 ## 3. Hands-On Exploration Steps (Do Not Finalize Resources)
 
-3.1 Access AWS Console
-  3.1.1 Navigate to [AWS Console](https://console.aws.amazon.com)
-  3.1.2 Launch CloudShell from the top navigation bar
+3. Access AWS Console
+3. Navigate to [AWS Console](https://console.aws.amazon.com)
+3. Launch CloudShell from the top navigation bar
 
-3.2 Explore Edge Location Metadata
-  3.2.1 Run: `aws cloudfront list-distributions --output json`
-  3.2.2 If no distributions exist, proceed to inspect global infrastructure
-  3.2.3 Run: `aws cloudfront get-distribution-config --id <distribution-id>` (only if read-only distributions exist)
+3. Explore Edge Location Metadata
+3. Run: `aws cloudfront list-distributions --output json`
+3. If no distributions exist, proceed to inspect global infrastructure
+3. Run: `aws cloudfront get-distribution-config --id <distribution-id>` (only if read-only distributions exist)
 
-3.3 Review Global Edge Network
-  3.3.1 Navigate to **CloudFront > Locations** in AWS Console
-  3.3.2 Observe map of edge locations and regional edge caches
-  3.3.3 Note geographic distribution and latency zones
+3. Review Global Edge Network
+3. Navigate to **CloudFront > Locations** in AWS Console
+3. Observe map of edge locations and regional edge caches
+3. Note geographic distribution and latency zones
 
-3.4 Inspect CloudFront Console
-  3.4.1 Navigate to **CloudFront > Distributions**
-  3.4.2 Select any existing distribution (if available)
-  3.4.3 Review origin settings, cache behaviors, and edge associations
-  3.4.4 Do not create or modify any distributions
+3. Inspect CloudFront Console
+3. Navigate to **CloudFront > Distributions**
+3. Select any existing distribution (if available)
+3. Review origin settings, cache behaviors, and edge associations
+3. Do not create or modify any distributions
 
-3.5 Compare Edge Location Coverage
-  3.5.1 Identify 3 cities with edge locations from the AWS map
-  3.5.2 Note proximity to major user populations
-  3.5.3 Record latency benefits and strategic placement rationale
+3. Compare Edge Location Coverage
+3. Identify 3 cities with edge locations from the AWS map
+3. Note proximity to major user populations
+3. Record latency benefits and strategic placement rationale
 
 ---
 
 ## 4. Deliverables
 
-4.1 List of global edge locations and regional edge caches
-4.2 Summary of CloudFront distribution architecture (if read-only access available)
-4.3 Notes on geographic distribution and latency optimization strategy
+4. List of global edge locations and regional edge caches
+4. Summary of CloudFront distribution architecture (if read-only access available)
+4. Notes on geographic distribution and latency optimization strategy
 
 ---
 
 ## 5. Supplemental Materials
 
-5.1 Runbook: `runbooks/aws-cloudfront-edge-location-inspection.md`
-5.2 Playbook: `playbooks/aws-global-cdn-strategy.md`
+5. Runbook: `runbooks/aws-cloudfront-edge-location-inspection.md`
+5. Playbook: `playbooks/aws-global-cdn-strategy.md`
 
 ---
 
 ## 6. Notes and Warnings
 
-6.1 Do not create or modify CloudFront distributions during this lab
-6.2 Edge location availability may vary by region and account
-6.3 CLI output may be empty if no distributions exist—this is expected
+6. Do not create or modify CloudFront distributions during this lab
+6. Edge location availability may vary by region and account
+6. CLI output may be empty if no distributions exist—this is expected
 
 ---
 
 ## 7. Verification Source
 
-7.1 Validated against [AWS CloudFront Documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
+7. Validated against [AWS CloudFront Documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 
 ---
 
@@ -207,88 +207,76 @@ This hands-on workshop builds upon the cost management foundation from Module 1 
 
 ## 1. Prerequisites
 
-1.1 Google Cloud Console access with project-level permissions
-1.2 Cloud Shell enabled
-1.3 Basic understanding of cloud infrastructure concepts
-1.4 Ensure the Compute Engine API is enabled for your project
-1.5 No VM instance creation required
+1. Google Cloud Console access with project-level permissions
+2. Cloud Shell enabled
+3. Basic understanding of cloud infrastructure concepts
+4. Ensure the Compute Engine API is enabled for your project
+5. No VM instance creation required
 
 ---
 
 ## 2. Theory Overview
 
-2.1 Google Cloud has over 40 regions and 100+ zones globally.
-2.2 Each region is a geographic location containing multiple isolated zones.
-2.3 Zones are independent failure domains connected via Google’s private high-speed network.
-2.4 Most regions contain three or more zones housed in separate physical facilities.
-2.5 Service availability may vary by region and zone.
+6. Google Cloud has over 40 regions and 100+ zones globally
+7. Each region is a geographic location containing multiple isolated zones
+8. Zones are independent failure domains connected via Google’s private high-speed network
+9. Most regions contain three or more zones housed in separate physical facilities
+10. Service availability may vary by region and zone
 
 ---
 
 ## 3. Hands-On Exploration Steps (Do Not Finalize Resources)
 
-3.1 Access Google Cloud Console
-  3.1.1 Navigate to [Google Cloud Console](https://console.cloud.google.com)
-  3.1.2 Use the Project Picker to select your project
-  3.1.3 ![Google Cloud Console Welcome Page](media/images/Project_Picker.png)
+11. Access Google Cloud Console
+  - Navigate to [Google Cloud Console](https://console.cloud.google.com)
+  - Use the Project Picker to select your project
 
-3. After selecting the project picker regardless of the default setting, ergo; **cloudlearningsolution**. In the **Select a resource** box, select if not already displayed the organization **cloudlearningsolution**, then select your project by clicking **All** and then selecting your project name. Review the Type column to ensure you are selecting a project and not an organization or folder.
-    **Note**: You may need to expand the domain name to see and select your project.
+12. Activate Cloud Shell
+  - Click the terminal icon in the top navigation bar
 
-![Google Cloud Console Welcome Page](media/images/Project_Name_Selected.png)
+13. Explore Regions and Zones via CLI
+  - Run: `gcloud compute regions list --format="table(name,status,zones.len():label=ZONES)"`
+  - Run: `gcloud compute regions describe us-central1`
+  - Run: `gcloud compute zones list --format="table(name,region,status)"`
+  - Run: `gcloud compute zones list --filter="region:us-central1" --format="table(name,status)"`
 
-4. Open Cloud Shell by clicking the terminal icon located by the top right area in the Google Cloud Console, hover over the icons until you find and select the **Activate Cloud Shell** button.
+14. Inspect Region-Zone Mapping via Console
+  - Navigate to **Compute Engine > VM instances > Create Instance**
+  - Use the Region dropdown to view available zones
+  - Cancel before deploying any instance
 
-5. Cloud shell will open in a new pane at the bottom of the console. If prompted select **Continue**, and Cloud shell will require authentication. Another prompt will appear, Click **Authorize** to allow Cloud Shell to access your Google Cloud resources. If prompted to sign in again, sign in with your Google account to complete the authentication process.
-
-**Note**: IAM controls access to resources in Cloud Shell. Your presenter will need to grant you access and may allow specific actions to be denied as a learning exercise.
-
-3.2 Activate Cloud Shell
-  3.2.1 Click the terminal icon in the top navigation bar
-
-3.3 Explore Regions and Zones via CLI
-  3.3.1 Run: `gcloud compute regions list --format="table(name,status,zones.len():label=ZONES)"`
-  3.3.2 Run: `gcloud compute regions describe us-central1`
-  3.3.3 Run: `gcloud compute zones list --format="table(name,region,status)"`
-  3.3.4 Run: `gcloud compute zones list --filter="region:us-central1" --format="table(name,status)"`
-
-3.4 Inspect Region-Zone Mapping via Console
-  3.4.1 Navigate to **Compute Engine > VM instances > Create Instance**
-  3.4.2 Use the Region dropdown to view available zones
-  3.4.3 Cancel before deploying any instance
-
-3.5 Check Service Availability
-  3.5.1 Run: `gcloud ai models list --region=us-central1 2>/dev/null || echo "Vertex AI not available in this region"`
-  3.5.2 Run: `gcloud compute machine-types list --zones=us-central1-a --filter="name:n1-standard"`
+15. Check Service Availability
+  - Run: `gcloud ai models list --region=us-central1 2>/dev/null || echo "Vertex AI not available in this region"`
+  - Run: `gcloud compute machine-types list --zones=us-central1-a --filter="name:n1-standard"`
 
 ---
 
 ## 4. Deliverables
 
-4.1 Region and zone availability matrix
-4.2 Notes on service availability for Vertex AI and machine types
-4.3 Observations on zone distribution and naming conventions
+16. Region and zone availability matrix
+17. Notes on service availability for Vertex AI and machine types
+18. Observations on zone distribution and naming conventions
 
 ---
 
 ## 5. Supplemental Materials
 
-5.1 Runbook: `runbooks/gcp-region-zone-exploration.md`
-5.2 Playbook: `playbooks/gcp-multi-zone-deployment-strategy.md`
+19. Runbook: `runbooks/gcp-region-zone-exploration.md`
+20. Playbook: `playbooks/gcp-multi-zone-deployment-strategy.md`
 
 ---
 
 ## 6. Notes and Warnings
 
-6.1 Do not finalize VM creation during this lab
-6.2 Zone names (e.g., `us-central1-a`) may vary by region and project
-6.3 Some services are region-specific—verify availability before planning deployments
+21. Do not finalize VM creation during this lab
+22. Zone names (e.g., `us-central1-a`) may vary by region and project
+23. Some services are region-specific—verify availability before planning deployments
 
 ---
 
 ## 7. Verification Source
 
-7.1 Validated against [Google Cloud Regions and Zones Documentation](https://cloud.google.com/compute/docs/regions-zones)
+24. Validated against [Google Cloud Regions and Zones Documentation](https://cloud.google.com/compute/docs/regions-zones)
 
 ---
 

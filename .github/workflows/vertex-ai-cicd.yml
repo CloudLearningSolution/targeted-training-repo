@@ -6,13 +6,13 @@ name: Vertex AI CI/CD - Train Model (Dev & Prod)
 # - Manual invocation via 'workflow_dispatch'.
 #
 # Uncomment the second 'branches' line under 'push' to also trigger on any branch matching 'feature/*'.
-on:
-  push:
-    branches: [main]
+# on:
+  # push:
+    # branches: [main]
 #   branches: [main, feature/*]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
+  # pull_request:
+    # branches: [main]
+  # workflow_dispatch:
   # ------------------------------------------------------------------------------
   # Environment Variables Documentation
   #
